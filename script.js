@@ -11,7 +11,7 @@
   try {
     // use the mp3 filename you added — URL-encode to handle spaces/special chars
     // simplified audio filename for deployment
-    const audioFile = 'bg-music.mp3';
+    const audioFile = "bg-music.mp3";
     bgAudio = new Audio(audioFile);
     bgAudio.loop = true;
     bgAudio.preload = "auto";
