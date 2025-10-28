@@ -10,9 +10,9 @@
   let bgAudio = null;
   try {
     // use the mp3 filename you added — URL-encode to handle spaces/special chars
-    const audioFile =
-      "Rizky Febian & Adrian Khalif - Alamak (Official Lyric Video) - Emotion Entertainment (1).mp3";
-    bgAudio = new Audio(encodeURI(audioFile));
+    // simplified audio filename for deployment
+    const audioFile = 'bg-music.mp3';
+    bgAudio = new Audio(audioFile);
     bgAudio.loop = true;
     bgAudio.preload = "auto";
     bgAudio.autoplay = true;
