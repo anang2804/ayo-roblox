@@ -1,0 +1,381 @@
+:root {
+  /* Trendy vibrant palette: purple-pink with cyan accents */
+  --bg1: #05040a; /* deep */
+  --bg2: #0b0720; /* dark indigo */
+  --primary: #7c4dff; /* vibrant purple */
+  --accent: #ff5ca8; /* hot pink */
+  --accent2: #00e5ff; /* electric cyan */
+  --muted: rgba(236, 240, 243, 0.72);
+  --card: rgba(255, 255, 255, 0.04);
+  --glass: rgba(255, 255, 255, 0.03);
+  --btn-scale: 1;
+  color-scheme: dark;
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, var(--bg1), var(--bg2));
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+/* animated blobs background */
+.bg-blob {
+  position: fixed;
+  inset: -20%;
+  z-index: 0;
+  pointer-events: none;
+  /* vibrant duo-tone blobs */
+  background: radial-gradient(
+      circle at 18% 28%,
+      rgba(124, 77, 255, 0.12),
+      transparent 14%
+    ),
+    radial-gradient(circle at 82% 72%, rgba(255, 92, 138, 0.1), transparent 12%),
+    radial-gradient(circle at 50% 60%, rgba(0, 229, 255, 0.06), transparent 8%);
+  filter: blur(44px) saturate(110%);
+  animation: blob 20s infinite ease-in-out;
+}
+@keyframes blob {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.card {
+  position: relative;
+  z-index: 5;
+  width: 460px;
+  max-width: 94vw;
+  border-radius: 18px;
+  padding: 28px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 10px 40px rgba(6, 4, 20, 0.6);
+  backdrop-filter: blur(10px) saturate(120%);
+  text-align: center;
+  transform: translateZ(0);
+}
+/* music toggle removed — audio will attempt autoplay on load */
+
+/* audio overlay removed: attempting unmuted autoplay on load per user request */
+h1 {
+  margin: 6px 0 2px;
+  font-size: 20px;
+}
+p {
+  margin: 0 0 14px;
+  color: rgba(236, 240, 243, 0.85);
+}
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 16px;
+  margin: 0 auto 16px;
+  background: linear-gradient(
+    135deg,
+    rgba(124, 77, 255, 0.16),
+    rgba(255, 92, 138, 0.12)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  overflow: hidden;
+  transition: transform 0.28s cubic-bezier(0.2, 0.9, 0.3, 1), box-shadow 0.28s;
+  box-shadow: 0 10px 30px rgba(8, 6, 30, 0.35);
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+  transition: transform 0.6s ease, filter 0.4s ease;
+}
+
+/* fallback state when img fails to load */
+.avatar.fallback {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 229, 255, 0.12),
+    rgba(255, 92, 138, 0.12)
+  );
+  color: #0b1220;
+}
+.avatar.fallback img {
+  display: none;
+}
+.avatar.fallback::before {
+  content: "🧩";
+  font-size: 28px;
+  display: inline-block;
+}
+/* avatar -- no background, zoomed/floating look */
+.avatar--no-bg {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  position: relative;
+  overflow: visible;
+}
+.avatar--no-bg img {
+  width: 160%;
+  height: 160%;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+  transform: translateY(-12%) scale(1.05);
+  filter: drop-shadow(0 14px 30px rgba(10, 10, 20, 0.32));
+}
+.avatar--no-bg::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -46%);
+  width: calc(100% + 40px);
+  height: calc(100% + 40px);
+  border-radius: 18px;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0)
+  );
+  filter: blur(6px);
+  opacity: 0.06;
+}
+h1 {
+  margin: 6px 0 2px;
+  font-size: 20px;
+}
+p {
+  margin: 0 0 14px;
+  color: rgba(236, 240, 243, 0.85);
+}
+.buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 12px;
+  position: relative;
+  min-height: 64px;
+}
+button {
+  cursor: pointer;
+  border: 0;
+  padding: 12px 18px;
+  border-radius: 14px;
+  font-weight: 800;
+  color: #071226;
+  min-width: 140px;
+  transition: transform 0.18s cubic-bezier(0.2, 0.9, 0.2, 1), box-shadow 0.22s,
+    background 0.22s, left 0.22s ease, top 0.22s ease;
+  position: relative;
+  will-change: transform, left, top;
+  transform: scale(var(--btn-scale));
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.02);
+  letter-spacing: 0.2px;
+}
+#yesBtn {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 229, 255, 0.98),
+    rgba(124, 77, 255, 0.9)
+  );
+  color: #05101a;
+  box-shadow: 0 12px 36px rgba(0, 229, 255, 0.08),
+    inset 0 -2px 8px rgba(255, 255, 255, 0.03);
+  border: 0;
+}
+#noBtn {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 92, 138, 0.98),
+    rgba(124, 77, 255, 0.9)
+  );
+  color: #1a0320;
+  box-shadow: 0 10px 30px rgba(255, 92, 138, 0.07);
+  cursor: pointer;
+  border: 0;
+}
+.grow {
+  transform: scale(1.14) translateZ(0);
+  box-shadow: 0 28px 68px rgba(124, 77, 255, 0.16);
+}
+.shake {
+  animation: shake 0.45s;
+}
+/* shrink state for the NO button when pressed */
+/* .shrink removed — scaling handled via --btn-scale variable now */
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-6px);
+  }
+  40% {
+    transform: translateX(6px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(4px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+footer {
+  margin-top: 18px;
+  font-size: 12px;
+  color: rgba(236, 240, 243, 0.6);
+}
+/* confetti canvas sits over everything */
+#confetti {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+}
+/* subtle instruction */
+.hint {
+  font-size: 13px;
+  color: rgba(236, 240, 243, 0.7);
+  margin-top: 6px;
+}
+@media (max-width: 420px) {
+  .card {
+    padding: 18px;
+  }
+  button {
+    min-width: 110px;
+  }
+}
+
+/* tablet adjustments */
+@media (max-width: 900px) {
+  .card {
+    width: 380px;
+    padding: 20px;
+  }
+  .avatar {
+    width: 80px;
+    height: 80px;
+    font-size: 28px;
+  }
+  button {
+    min-width: 120px;
+    padding: 12px 16px;
+  }
+}
+
+/* mobile adjustments: stack buttons, larger touch targets */
+@media (max-width: 600px) {
+  .card {
+    width: 92vw;
+    padding: 16px;
+  }
+  .avatar {
+    width: 72px;
+    height: 72px;
+    font-size: 26px;
+  }
+  h1 {
+    font-size: 18px;
+  }
+  p {
+    font-size: 14px;
+  }
+  .buttons {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    min-height: 0;
+  }
+  button {
+    min-width: 0;
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 10px;
+  }
+  #yesBtn {
+    order: 2;
+  }
+  #noBtn {
+    order: 1;
+  }
+  .hint {
+    font-size: 13px;
+  }
+  footer {
+    font-size: 13px;
+  }
+}
+
+/* very small phones */
+@media (max-width: 360px) {
+  .card {
+    padding: 12px;
+  }
+  .avatar {
+    width: 64px;
+    height: 64px;
+    font-size: 22px;
+  }
+  button {
+    padding: 12px 14px;
+  }
+}
+
+/* simple toast / popup used for short messages like "gas login" */
+.toast {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%) translateY(18px);
+  bottom: 7vh;
+  z-index: 220;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.03)
+  );
+  color: #071226;
+  padding: 10px 18px;
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(6, 4, 20, 0.6);
+  opacity: 0;
+  transition: transform 0.28s cubic-bezier(0.2, 0.9, 0.2, 1), opacity 0.28s;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  backdrop-filter: blur(6px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
